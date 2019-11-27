@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation_and_navigation"
+    app:startDestination="@+id/ly_set"
+    tools:ignore="UnusedNavigation">
+
+    <fragment
+        android:id="@+id/ly_anjian"
+        android:name="com.example.myapplication.db.LyAnjianFragment"
+        tools:layout="@layout/fragment_ly_anjian" />
+
+    <fragment
+        android:id="@+id/ly_duihua"
+        android:name="com.example.myapplication.db.LyduihuaFragment"
+        tools:layout="@layout/fragment_lyduihua" />
+
+    <fragment
+        android:id="@+id/ly_kaiguan"
+        android:name="com.example.myapplication.db.LyKaiguanFragment"
+        tools:layout="@layout/fragment_ly_kaiguan" />
+
+    <fragment
+        android:id="@+id/ly_set"
+        android:name="com.example.myapplication.db.LySetFragment"
+        tools:layout="@layout/fragment_ly_set"/>
+
+
+</navigation>

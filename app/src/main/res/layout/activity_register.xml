@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="260dp"
+    android:background="#01D7FF"
+    android:id="@+id/relat_czhuc">
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="230dp"
+        android:layout_marginTop="40dp"
+       android:layout_alignParentBottom="true"
+        app:srcCompat="@drawable/timg_6"
+        tools:ignore="ContentDescription" />
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="33dp"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/boutt_jr_1"
+        android:text="@string/hui"
+        android:textColor="#fff"
+        android:textSize="30dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Textview_de"
+        android:textColor="#fff"
+        android:textSize="25sp"
+        android:layout_centerHorizontal="true"
+        android:text="注册"/>
+</RelativeLayout>
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#fff"
+        android:layout_below="@id/relat_czhuc"
+        android:textSize="@dimen/puto"
+        android:layout_marginStart="@dimen/test10"
+        android:layout_marginTop="30dp"
+        android:text="" />
+
+
+
+    <EditText
+        android:id="@+id/editText_nick"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView6"
+        android:maxLines="1"
+        android:layout_alignParentEnd="true"
+        android:hint="昵称"
+        android:textColorHint="#bbb"
+
+        android:layout_marginEnd="0dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editText_nick"
+        android:textSize="20dp"
+        android:textColor="#fff"
+        android:layout_marginStart="10dp"
+        android:text="" />
+
+    <EditText
+        android:id="@+id/editText_user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView9"
+        android:hint="用户名"
+        android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        android:textColorHint="#bbb"
+        android:maxLines="1"
+
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editText_user"
+
+        android:textSize="20dp"
+        android:layout_marginStart="10dp"
+        android:text="" />
+
+    <EditText
+        android:id="@+id/editText_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="密码"
+        android:textColorHint="#bbb"
+        android:layout_below="@id/textView10"
+        android:ems="10"
+        android:inputType="textPassword" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editText_pwd"
+        android:textSize="20dp"
+        android:textColor="#fff"
+        android:layout_marginStart="10dp"
+        android:text="" />
+
+    <EditText
+        android:id="@+id/editText_pwwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView11"
+        android:hint="确认密码"
+        android:textColorHint="#bbb"
+        android:ems="10"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/button2_wanchengzhuc"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editText_pwwd"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/boutt_jr_1"
+        android:text="完成注册"
+        android:textColor="#fff"
+        android:textSize="25dp" />
+
+
+
+</RelativeLayout>

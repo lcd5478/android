@@ -89,6 +89,22 @@ public class MyData {
     /**
      * 写入数据
      * @文件名 user 文件名
+     * @二维字符串数组 strings 一维字符串数组
+     */
+    public void savekey_ss(String user,String[] strings){
+        String meun ="Bluekey"+user;
+        SharedPreferences shp=context.getSharedPreferences(meun,Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor =shp.edit();
+        for (int a=0;a<3;a++){
+            String S = String.format("ss%d%d",a);
+            editor.putString(S,strings[a]);
+        }
+        editor.apply();
+
+    }
+    /**
+     * 写入数据
+     * @文件名 user 文件名
      * @字符串 strings 字符串
      * @S 字符串名称
      */
@@ -103,7 +119,7 @@ public class MyData {
 
     /**
      *
-     * @param user
+     * @param user 读取单个字符串
      * @param S 字符串名称
      * @return 字符串
      */
@@ -144,4 +160,26 @@ public class MyData {
         }
         return strings;
     }
+    public String[] loadkey_ss(String user){
+        String[] strings= new String[6];
+
+        String meun ="Bluekey"+user;
+        try {
+            SharedPreferences shp =context.getSharedPreferences(meun,Context.MODE_PRIVATE);
+            for (int a=0;a<3;a++){
+
+                    String S =String.format("ss%d%d",a);
+                    strings[a]=shp.getString(S, String.valueOf(0));
+
+            }
+        } catch (Exception e) {
+            Log.e("shared", "load: "+e);
+            e.printStackTrace();
+        }
+        return strings;
+    }
+
+
+
+
 }

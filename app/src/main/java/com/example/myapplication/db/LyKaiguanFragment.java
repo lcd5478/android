@@ -294,29 +294,41 @@ public class LyKaiguanFragment extends Fragment {
                 String a = username.getText().toString();
                 String b = uptext.getText().toString();
                 String c = downtext.getText().toString();
+                MyData myData =new MyData(getContext());
                 switch (inInt) {
                     case 0:
-                        keyBlueViewModel.getBluekey1_name().setValue(a);break;
+                        keyBlueViewModel.getBluekey1_name().setValue(a);
+                        myData.savekey_s(loginActivity.name,keyBlueViewModel.getBluekey1_name().getValue(),"getBluekey1_name");
+                        break;
                     case 1:
-                        keyBlueViewModel.getBluekey2_name().setValue(a);break;
+                        keyBlueViewModel.getBluekey2_name().setValue(a);
+                        myData.savekey_s(loginActivity.name,keyBlueViewModel.getBluekey2_name().getValue(),"getBluekey2_name");
+                        break;
                     case 2:
-                        keyBlueViewModel.getBluekey3_name().setValue(a);break;
+                        keyBlueViewModel.getBluekey3_name().setValue(a);
+                        myData.savekey_s(loginActivity.name,keyBlueViewModel.getBluekey3_name().getValue(),"getBluekey3_name");
+                        break;
                     case 3:
-                        keyBlueViewModel.getBluekey4_name().setValue(a);break;
+                        keyBlueViewModel.getBluekey4_name().setValue(a);
+                        myData.savekey_s(loginActivity.name,keyBlueViewModel.getBluekey4_name().getValue(),"getBluekey4_name");
+                        break;
                     case 4:
-                        keyBlueViewModel.getBluekey5_name().setValue(a);break;
+                        keyBlueViewModel.getBluekey5_name().setValue(a);
+                        myData.savekey_s(loginActivity.name,keyBlueViewModel.getBluekey5_name().getValue(),"getBluekey5_name");
+                        break;
                     case 5:
-                        keyBlueViewModel.getBluekey6_name().setValue(a);break;
+                        keyBlueViewModel.getBluekey6_name().setValue(a);
+                        myData.savekey_s(loginActivity.name,keyBlueViewModel.getBluekey6_name().getValue(),"getBluekey6_name");
+                        break;
                 }
                 String[][] strings=  keyBlueViewModel.getBluekey().getValue();
                 strings[inInt][0]=b;
                 strings[inInt][1]=c;
                 keyBlueViewModel.getBluekey().setValue(strings);
 
-                MyData myData =new MyData(getContext());
+               myData.savekey(loginActivity.name,keyBlueViewModel.getBluekey().getValue());
 
-                //   Toast.makeText(this.getActivity(), strings[0]+"我"+strings[1]+"是的"+strings[2], Toast.LENGTH_SHORT).show();
-                //    return strings;
+
             }
         }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
             @Override
@@ -367,29 +379,35 @@ public class LyKaiguanFragment extends Fragment {
                 String a = username.getText().toString();
                 String b = uptext.getText().toString();
                 String c = downtext.getText().toString();
+                MyData myData =new MyData(getContext());
                 switch (inInt) {
                     case 0:
                         keyBlueViewModel.getJingDuTiao1_name().setValue(a);
                         keyBlueViewModel.getJingDuTiao1_max().setValue(Integer.valueOf(b));
+                        myData.savekey_s(loginActivity.name,keyBlueViewModel.getJingDuTiao1_name().getValue(),"getJingDuTiao1_name");
+                        myData.savekey_s(loginActivity.name,String.valueOf(keyBlueViewModel.getJingDuTiao1_max().getValue()),"getJingDuTiao1_max");
                         break;
                     case 1:
                         keyBlueViewModel.getJingDuTiao2_name().setValue(a);
                         keyBlueViewModel.getJingDuTiao2_max().setValue(Integer.valueOf(b));
+                        myData.savekey_s(loginActivity.name,keyBlueViewModel.getJingDuTiao2_name().getValue(),"getJingDuTiao2_name");
+                        myData.savekey_s(loginActivity.name,String.valueOf(keyBlueViewModel.getJingDuTiao2_max().getValue()),"getJingDuTiao2_max");
                         break;
                     case 2:
                         keyBlueViewModel.getJingDuTiao3_name().setValue(a);
                         keyBlueViewModel.getJingDuTiao3_max().setValue(Integer.valueOf(b));
+                        myData.savekey_s(loginActivity.name,keyBlueViewModel.getJingDuTiao3_name().getValue(),"getJingDuTiao3_name");
+                        myData.savekey_s(loginActivity.name,String.valueOf(keyBlueViewModel.getJingDuTiao3_max().getValue()),"getJingDuTiao3_max");
                         break;
 
                 }
                 String[] string= keyBlueViewModel.getJingDuTiao_ap().getValue();
                 string[inInt] =c;
                 keyBlueViewModel.getJingDuTiao_ap().setValue(string);
+                myData.savekey_ss(loginActivity.name,keyBlueViewModel.getJingDuTiao_ap().getValue());
 
-                MyData myData =new MyData(getContext());
 
-                //   Toast.makeText(this.getActivity(), strings[0]+"我"+strings[1]+"是的"+strings[2], Toast.LENGTH_SHORT).show();
-                //    return strings;
+
             }
         }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
             @Override

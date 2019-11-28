@@ -39,10 +39,27 @@ public class LyKaiguanFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         //View root = inflater.inflate(R.layout.fragment_ly_kaiguan, container, false);
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_ly_kaiguan,container,false);
-        if (keyBlueViewModel==null)
-        keyBlueViewModel =new KeyBlueViewModel(this.getContext());
-
         keyBlueViewModel = ViewModelProviders.of(requireActivity()).get(KeyBlueViewModel.class);
+   //     if (keyBlueViewModel==null)
+      //  keyBlueViewModel =new KeyBlueViewModel(this.getContext());
+        MyData myData =new MyData(this.getContext());
+        keyBlueViewModel.getBluekey().setValue(myData.loadkey(loginActivity.name));
+        keyBlueViewModel.getJingDuTiao_ap().setValue(myData.loadkey_ss(loginActivity.name));
+        keyBlueViewModel.getBluekey1_name().setValue(myData.loadkey_s(loginActivity.name,"getBluekey1_name"));
+        keyBlueViewModel.getBluekey2_name().setValue(myData.loadkey_s(loginActivity.name,"getBluekey2_name"));
+        keyBlueViewModel.getBluekey3_name().setValue(myData.loadkey_s(loginActivity.name,"getBluekey3_name"));
+        keyBlueViewModel.getBluekey4_name().setValue(myData.loadkey_s(loginActivity.name,"getBluekey4_name"));
+        keyBlueViewModel.getBluekey5_name().setValue(myData.loadkey_s(loginActivity.name,"getBluekey5_name"));
+        keyBlueViewModel.getBluekey6_name().setValue(myData.loadkey_s(loginActivity.name,"getBluekey6_name"));
+        keyBlueViewModel.getJingDuTiao1_name().setValue(myData.loadkey_s(loginActivity.name,"getJingDuTiao1_name"));
+        keyBlueViewModel.getJingDuTiao2_name().setValue(myData.loadkey_s(loginActivity.name,"getJingDuTiao2_name"));
+        keyBlueViewModel.getJingDuTiao3_name().setValue(myData.loadkey_s(loginActivity.name,"getJingDuTiao3_name"));
+        keyBlueViewModel.getJingDuTiao1_max().setValue(Integer.valueOf(myData.loadkey_s(loginActivity.name,"getJingDuTiao1_max")));
+        keyBlueViewModel.getJingDuTiao2_max().setValue(Integer.valueOf(myData.loadkey_s(loginActivity.name,"getJingDuTiao2_max")));
+        keyBlueViewModel.getJingDuTiao3_max().setValue(Integer.valueOf(myData.loadkey_s(loginActivity.name,"getJingDuTiao3_max")));
+        if(keyBlueViewModel.getJingDuTiao3_max().getValue()==0)
+            keyBlueViewModel.getJingDuTiao3_max().setValue(100);
+
         isbianji =false;
         binding.setData(keyBlueViewModel);
         binding.setLifecycleOwner(this);
@@ -170,15 +187,15 @@ public class LyKaiguanFragment extends Fragment {
                     else
                         FaSouData(keyBlueViewModel.getBluekey().getValue()[2][1]);
                 }
-                boolean[] booleans=keyBlueViewModel.getBluekey1_zt().getValue();
-                booleans[2]=isChecked;
-                keyBlueViewModel.getBluekey1_zt().setValue(booleans);
-            }
-        });
+                    boolean[] booleans=keyBlueViewModel.getBluekey1_zt().getValue();
+                    booleans[2]=isChecked;
+                    keyBlueViewModel.getBluekey1_zt().setValue(booleans);
+                }
+            });
         binding.switch11.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isbianji==true){
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if(isbianji==true){
                     TanChuangSheZheng(buttonView,3);
                     binding.switch11.setChecked(false);
                     isChecked=false;
@@ -204,9 +221,9 @@ public class LyKaiguanFragment extends Fragment {
                     if(isChecked)
                         FaSouData(keyBlueViewModel.getBluekey().getValue()[4][0]);
                     else
-                        FaSouData(keyBlueViewModel.getBluekey().getValue()[4][1]);
-                }
-                boolean[] booleans=keyBlueViewModel.getBluekey1_zt().getValue();
+                FaSouData(keyBlueViewModel.getBluekey().getValue()[4][1]);
+            }
+            boolean[] booleans=keyBlueViewModel.getBluekey1_zt().getValue();
                 booleans[4]=isChecked;
                 keyBlueViewModel.getBluekey1_zt().setValue(booleans);
             }

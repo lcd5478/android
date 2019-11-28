@@ -96,7 +96,7 @@ public class MyData {
         SharedPreferences shp=context.getSharedPreferences(meun,Context.MODE_PRIVATE);
         SharedPreferences.Editor editor =shp.edit();
         for (int a=0;a<3;a++){
-            String S = String.format("ss%d%d",a);
+            String S = String.format("ss%d",a);
             editor.putString(S,strings[a]);
         }
         editor.apply();
@@ -168,7 +168,7 @@ public class MyData {
             SharedPreferences shp =context.getSharedPreferences(meun,Context.MODE_PRIVATE);
             for (int a=0;a<3;a++){
 
-                    String S =String.format("ss%d%d",a);
+                    String S =String.format("ss%d",a);
                     strings[a]=shp.getString(S, String.valueOf(0));
 
             }

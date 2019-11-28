@@ -76,7 +76,6 @@ public class LyKaiguanFragment extends Fragment {
                 FaSouData(string);
             }
             /*
-
              * 按住seekbar时的事件监听处理
 
              * */

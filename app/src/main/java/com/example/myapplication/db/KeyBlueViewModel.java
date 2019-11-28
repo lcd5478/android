@@ -1,8 +1,13 @@
 package com.example.myapplication.db;
 
+import android.content.Context;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+
+import com.example.myapplication.SQL.MyData;
+import com.example.myapplication.activity_dl_ZC_WJMA.loginActivity;
 
 public class KeyBlueViewModel extends ViewModel {
     private MutableLiveData<String> mText;
@@ -13,9 +18,22 @@ public class KeyBlueViewModel extends ViewModel {
     private MutableLiveData<Integer> JingDuTiao1_now,JingDuTiao2_now,JingDuTiao3_now;
     private MutableLiveData<boolean[]> Bluekey1_zt;
     private MutableLiveData<String[]> JingDuTiao_ap;
-    public KeyBlueViewModel() {
-
-
+    public KeyBlueViewModel(Context context) {
+        MyData myData =new MyData(context);
+        Bluekey.setValue(myData.loadkey(loginActivity.name));
+        JingDuTiao_ap.setValue(myData.loadkey_ss(loginActivity.name));
+        Bluekey1_name.setValue(myData.loadkey_s(loginActivity.name,"getBluekey1_name"));
+        Bluekey2_name.setValue(myData.loadkey_s(loginActivity.name,"getBluekey2_name"));
+        Bluekey3_name.setValue(myData.loadkey_s(loginActivity.name,"getBluekey3_name"));
+        Bluekey4_name.setValue(myData.loadkey_s(loginActivity.name,"getBluekey4_name"));
+        Bluekey5_name.setValue(myData.loadkey_s(loginActivity.name,"getBluekey5_name"));
+        Bluekey6_name.setValue(myData.loadkey_s(loginActivity.name,"getBluekey6_name"));
+        JingDuTiao1_name.setValue(myData.loadkey_s(loginActivity.name,"getJingDuTiao1_name"));
+        JingDuTiao2_name.setValue(myData.loadkey_s(loginActivity.name,"getJingDuTiao2_name"));
+        JingDuTiao3_name.setValue(myData.loadkey_s(loginActivity.name,"getJingDuTiao3_name"));
+        JingDuTiao1_max.setValue(Integer.valueOf(myData.loadkey_s(loginActivity.name,"JingDuTiao1_max")));
+        JingDuTiao2_max.setValue(Integer.valueOf(myData.loadkey_s(loginActivity.name,"JingDuTiao2_max")));
+        JingDuTiao3_max.setValue(Integer.valueOf(myData.loadkey_s(loginActivity.name,"JingDuTiao3_max")));
     }
     public MutableLiveData<boolean[]> getBluekey1_zt(){
         if (Bluekey1_zt==null){

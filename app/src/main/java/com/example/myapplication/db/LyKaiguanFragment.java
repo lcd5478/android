@@ -39,6 +39,9 @@ public class LyKaiguanFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         //View root = inflater.inflate(R.layout.fragment_ly_kaiguan, container, false);
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_ly_kaiguan,container,false);
+        if (keyBlueViewModel==null)
+        keyBlueViewModel =new KeyBlueViewModel();
+
         keyBlueViewModel = ViewModelProviders.of(requireActivity()).get(KeyBlueViewModel.class);
         isbianji =false;
         binding.setData(keyBlueViewModel);

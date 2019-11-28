@@ -77,29 +77,63 @@ public class MyData {
         String meun ="Bluekey"+user;
         SharedPreferences shp=context.getSharedPreferences(meun,Context.MODE_PRIVATE);
         SharedPreferences.Editor editor =shp.edit();
-        for (int a=0;a<12;a++){
-            for(int b=0;b<3;b++){
-                String S =String.format("s%d%d",a,b);
+        for (int a=0;a<6;a++){
+            for(int b=0;b<2;b++){
+                String S = String.format("s%d%d",a,b);
                 editor.putString(S,strings[a][b]);
             }
         }
         editor.apply();
 
     }
+    /**
+     * 写入数据
+     * @文件名 user 文件名
+     * @字符串 strings 字符串
+     * @S 字符串名称
+     */
+    public void savekey_s(String user,String strings,String S){
+        String meun ="Bluekey"+user;
+        SharedPreferences shp=context.getSharedPreferences(meun,Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor =shp.edit();
+        editor.putString(S,strings);
+        editor.apply();
 
+    }
+
+    /**
+     *
+     * @param user
+     * @param S 字符串名称
+     * @return 字符串
+     */
+    public String loadkey_s(String user,String S){
+        String strings= new String();
+
+        String meun ="Bluekey"+user;
+        try {
+
+            SharedPreferences shp =context.getSharedPreferences(meun,Context.MODE_PRIVATE);
+            strings=shp.getString(S, String.valueOf(0));
+        } catch (Exception e) {
+            Log.e("shared", "load: "+e);
+            e.printStackTrace();
+        }
+        return strings;
+    }
     /**
      * 读取数据
      * @文件名 user
      * @二维字符串数组
      */
     public String[][] loadkey(String user){
-        String[][] strings= new String[12][3];
+        String[][] strings= new String[6][2];
 
         String meun ="Bluekey"+user;
         try {
             SharedPreferences shp =context.getSharedPreferences(meun,Context.MODE_PRIVATE);
-            for (int a=0;a<12;a++){
-                for (int b=0;b<3;b++){
+            for (int a=0;a<6;a++){
+                for (int b=0;b<2;b++){
                     String S =String.format("s%d%d",a,b);
                     strings[a][b]=shp.getString(S, String.valueOf(0));
                 }
@@ -108,15 +142,6 @@ public class MyData {
             Log.e("shared", "load: "+e);
             e.printStackTrace();
         }
-
-        for (int m=0;m<12;m++){
-            if (strings[m][2] == "0");
-            else
-                return strings;
-        }
-        for (int t = 0; t < 12; t++)
-            strings[t][2] = " ";
-
         return strings;
     }
 }

@@ -14,6 +14,8 @@ public class KeyBlueViewModel extends ViewModel {
     private MutableLiveData<boolean[]> Bluekey1_zt;
     private MutableLiveData<String[]> JingDuTiao_ap;
     public KeyBlueViewModel() {
+
+
     }
     public MutableLiveData<boolean[]> getBluekey1_zt(){
         if (Bluekey1_zt==null){

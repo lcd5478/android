@@ -34,15 +34,9 @@ public class HomeFragment extends Fragment {
             //    ViewModelProviders.of(this).get(HomeViewModel.class);
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-        textView_1 =root.findViewById(R.id.text_home);
-        button_mian=(Button) root.findViewById(R.id.button_mian);
-        button_mian.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((Main_1Activity)getActivity()).setData("15");
-            }
 
-        });
+
+
 
 
         //textView_1.setText(string);

@@ -1,35 +1,35 @@
     <!--<resources xmlns:tools="http://schemas.android.com/tools"-->
     <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">鬼刀</string>
-    <string name="tim">你好，我是Ⅴ，你的私人助理!</string>
-    <string name="dl">登录</string>
-    <string name="wjmm"><u>忘记密码</u></string>
-    <string name="ljzc"><u>立即注册</u></string>
-    <string name="hui"><![CDATA[<]]></string>
-    <string name="title_activity_main_1">Main_1Activity</string>
-    <string name="navigation_drawer_open" tools:ignore="ExtraTranslation">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">鬼刀助手</string>
-    <string name="nav_header_subtitle">祝你使用愉快！</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">更多</string>
+    <string name="app_name">科协助手</string>
+    <string name="tim" translatable="false">你好，我是Ⅴ，你的私人助理!</string>
+    <string name="dl" translatable="false">登录</string>
+    <string name="wjmm" translatable="false"><u>忘记密码</u></string>
+    <string name="ljzc" translatable="false"><u>立即注册</u></string>
+    <string name="hui" translatable="false"><![CDATA[<]]></string>
+    <string name="title_activity_main_1" translatable="false">Main_1Activity</string>
+    <string name="navigation_drawer_open" tools:ignore="ExtraTranslation" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+    <string name="nav_header_title" translatable="false">鬼刀助手</string>
+    <string name="nav_header_subtitle" translatable="false">祝你使用愉快！</string>
+    <string name="nav_header_desc" translatable="false">Navigation header</string>
+    <string name="action_settings" translatable="false">更多</string>
 
-    <string name="menu_home">主页</string>
-    <string name="menu_gallery">MQTT助手</string>
-    <string name="menu_slideshow">蓝牙串口助手</string>
-    <string name="menu_tools">设置</string>
-    <string name="menu_share">关于</string>
-    <string name="menu_send">更多</string>
+    <string name="menu_home" translatable="false">主页</string>
+    <string name="menu_gallery" translatable="false">MQTT助手</string>
+    <string name="menu_slideshow" translatable="false">蓝牙串口助手</string>
+    <string name="menu_tools" translatable="false">设置</string>
+    <string name="menu_share" translatable="false">关于</string>
+    <string name="menu_send" translatable="false">更多</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="TextView">开关</string>
-    <string name="banbenhao">V1.0</string>
-    <string name="huatukey_text">开始绘图</string>
-    <string name="huizhiboxingtu">波形图</string>
-    <string name="boxingtu_tishi">横屏体验会更好哦！</string>
-    <string name="qingkong" >清空</string>
-    <string name="kaisjieshou">开始接收</string>
-    <string name="huadong">滑动进度条</string>
-    <string name="bianji">编辑模式</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="TextView" translatable="false">开关</string>
+    <string name="banbenhao" translatable="false">V1.0</string>
+    <string name="huatukey_text" translatable="false">开始绘图</string>
+    <string name="huizhiboxingtu" translatable="false">波形图</string>
+    <string name="boxingtu_tishi" translatable="false">横屏体验会更好哦！</string>
+    <string name="qingkong" translatable="false">清空</string>
+    <string name="kaisjieshou" translatable="false">开始接收</string>
+    <string name="huadong" translatable="false">滑动进度条</string>
+    <string name="bianji" translatable="false">编辑模式</string>
 </resources>

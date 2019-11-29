@@ -49,7 +49,7 @@
                 android:background="@drawable/boutt_bankuang"
 
                 android:button="@drawable/boutt_shangxiala"
-                android:text="已配对" />
+                android:text="未配对" />
 
             <ListView
                 android:id="@+id/listview_wpd"

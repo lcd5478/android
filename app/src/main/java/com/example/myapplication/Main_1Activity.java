@@ -56,7 +56,7 @@ public class Main_1Activity extends AppCompatActivity  {
     private AppBarConfiguration mAppBarConfiguration;
 
 
-    // private ImageView mimage_wl;
+     private ImageView mimage_wl;
   //  LySetFragment f1 = new LySetFragment();
  //   LyduihuaFragment f2 = new LyduihuaFragment();
   //  LyAnjianFragment f3 = new LyAnjianFragment();
@@ -70,13 +70,7 @@ public class Main_1Activity extends AppCompatActivity  {
         setSupportActionBar(toolbar);
 
 
-       // View act =findViewById(R.id.action_settings);
-       // act.setOnClickListener(new View.OnClickListener() {
-           // @Override
-          //  public void onClick(View v) {
-             //
-         //   }
-      //  });
+
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -91,17 +85,16 @@ public class Main_1Activity extends AppCompatActivity  {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        Main_1Activity.this.setTitle("");
+        mimage_wl =findViewById(R.id.imageView_img);
+        //android:onClick=""
+        mimage_wl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
 
-      //  try{
-
-      //      Glide.with(this).load("https://pics6.baidu.com/feed/a9d3fd1f4134970af30485870e9b66cda6865dfe.jpeg?token=6a73353f0bbd6125dc1bc4e235cdb331&s=2DE6E8161C6178881E490CEF0300702E").into(mimage_wl);
-
-      //  }catch (Exception e){
-       //     Log.d("************", ""+e.getMessage());
-      //  }
-       // LySetFragment.OnFragmentInteractionListener(){}
 
 
         registerBoradcastReceiver();
@@ -191,6 +184,8 @@ public class Main_1Activity extends AppCompatActivity  {
         adapter.addFragment(f4);
         viewPager.setAdapter(adapter);
     }
+
+
 
 
 

@@ -281,6 +281,9 @@ public class LySetFragment<textView1_shebe> extends Fragment {
                     }
                     com.example.myapplication.db.Message message =new com.example.myapplication.db.Message(sb.toString(), com.example.myapplication.db.Message.TYPE_RECEIVED);
                     LyduihuaFragment.msgList.add(message);
+                    BlueBoxingFragment.string_xingxi=sb.toString();
+                    BlueBoxingFragment.iskanyaxinghuang =true;
+
                     //通知列表有新数据插入 这样数据才能在recyclerview中显示
                     LyduihuaFragment.adapter.notifyItemInserted(LyduihuaFragment.msgList.size() - 1);
                     //定位将显示的数据定位到最后一行，保证可以看到最后一条消息

@@ -262,8 +262,10 @@ public class LyduihuaFragment extends Fragment {
                 //mHandler.obtainMessage(MainActivity.REC_DATA,buffer.length,-1,buffer).sendToTarget();
                 try {
                     sendMessage(inputText.getText().toString());
-                    Thread.sleep(sleeptime);
                     LyduihuaFragment.this.getActivity().runOnUiThread(updateThread);
+
+                    Thread.sleep(sleeptime);
+
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                     Log.e("myDebug", "timeThread end"+e);

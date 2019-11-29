@@ -8,7 +8,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.db.BlueToothController;
@@ -57,11 +60,21 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     };
+    TextView textView1,textView2;
+    private String S;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         IntentFilter filter =new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
+
+
+        //Log.e(TAG, ti[0]);
+        //Log.e(TAG, ti_nen[0]);
+        //Log.e(TAG, ti_nen[1]);
+        //Log.e(TAG, ti_nen[2]);
+        //textView2.setText("text"+ti[0]+"TIM"+ti[1]+"KE"+ti[2]+"RT"+ti[3]);
+
         registerReceiver(receiver,filter);
     }
     public void  isSuppourtBlueTooth(View view)

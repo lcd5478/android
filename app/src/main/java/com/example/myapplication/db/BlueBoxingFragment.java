@@ -149,6 +149,7 @@ public class BlueBoxingFragment extends Fragment {
             {
                 //更新UI
                 try {
+
                     i_num+=1;
                     LineDataSet set1;
                     entityList.add(new Entry(i_num,Float.valueOf(ti[1])));

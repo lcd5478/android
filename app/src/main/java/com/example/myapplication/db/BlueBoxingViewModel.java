@@ -9,11 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BlueBoxingViewModel extends ViewModel {
-    MutableLiveData<List<Entry> >  entityList = new MutableLiveData<List<Entry>>();
+    MutableLiveData<List<Entry> >  entityList;
 
 
     public MutableLiveData<List<Entry>> getEntityList(){
         if(entityList==null){
+            entityList = new MutableLiveData<List<Entry>>();
             List<Entry> ent = new ArrayList<>();
             ent.clear();
             entityList.setValue(ent);

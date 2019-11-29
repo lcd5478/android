@@ -53,6 +53,7 @@ public class BlueBoxingFragment extends Fragment {
        // for(int i=0;i<20;i++){
           //  entityList.add(new Entry(i, (float) (Math.random()*300+0)));
        // }
+        mViewModel = ViewModelProviders.of(this).get(BlueBoxingViewModel.class);
         LineDataSet lineDataSet = new LineDataSet(mViewModel.getEntityList().getValue(),"直线一");
         LineData lineData = new LineData(lineDataSet);
         binding.linechart.setData(lineData);

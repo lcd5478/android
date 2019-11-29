@@ -36,7 +36,7 @@ public class BlueBoxingFragment extends Fragment {
   //  public static BlueBoxingFragment newInstance() {
     //    return new BlueBoxingFragment();
    // }
-  final List<Entry> entityList=new ArrayList<>();
+ // final List<Entry> entityList=new ArrayList<>();
     int i_num = 0;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -53,7 +53,7 @@ public class BlueBoxingFragment extends Fragment {
        // for(int i=0;i<20;i++){
           //  entityList.add(new Entry(i, (float) (Math.random()*300+0)));
        // }
-        LineDataSet lineDataSet = new LineDataSet(entityList,"直线一");
+        LineDataSet lineDataSet = new LineDataSet(mViewModel.getEntityList().getValue(),"直线一");
         LineData lineData = new LineData(lineDataSet);
         binding.linechart.setData(lineData);
         binding.linechart.invalidate();
@@ -68,13 +68,13 @@ public class BlueBoxingFragment extends Fragment {
 
 
              //   entityList.add(new Entry(i[0], (float) (Math.random()*300+0)));
-                entityList.clear();
+                mViewModel.getEntityList().getValue().clear();
                 i_num=0;
                 LineDataSet set1;
 
                 set1 = (LineDataSet) binding.linechart.getData().getDataSetByIndex(0);
 
-                set1.setValues(entityList);
+                set1.setValues(mViewModel.getEntityList().getValue());
 
                 //刷新数据
                 binding.linechart.getData().notifyDataChanged();
@@ -152,10 +152,10 @@ public class BlueBoxingFragment extends Fragment {
 
                     i_num+=1;
                     LineDataSet set1;
-                    entityList.add(new Entry(i_num,Float.valueOf(ti[1])));
+                    mViewModel.getEntityList().getValue().add(new Entry(i_num,Float.valueOf(ti[1])));
                     set1 = (LineDataSet) binding.linechart.getData().getDataSetByIndex(0);
 
-                    set1.setValues(entityList);
+                    set1.setValues(mViewModel.getEntityList().getValue());
 
                     //刷新数据
                     binding.linechart.getData().notifyDataChanged();

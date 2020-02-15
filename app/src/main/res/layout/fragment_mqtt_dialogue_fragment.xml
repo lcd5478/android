@@ -5,9 +5,101 @@
     android:layout_height="match_parent"
     tools:context=".ui.gallery.mqtt.mqtt_duihua.Fragment_mqtt_dialogue">
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello" />
+        android:orientation="vertical">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/Recycler_duihua_mqtt"
+            android:layout_above="@id/line_layout_mqtt"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/line_layout_mqtt"
+            android:layout_above="@id/liner_lay_mqtt"
+            android:layout_margin="5dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/editText_input_mqtt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="" />
+
+            <Button
+                android:id="@+id/button_fasou_mqtt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/boutt_jr_1"
+                android:layout_weight="1"
+                android:textColor="#fff"
+                android:text="发送" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/liner_lay_mqtt"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true">
+
+            <Button
+                android:id="@+id/button_qingkong_mqtt"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:background="@drawable/boutt_jr_1"
+                android:textSize="10sp"
+                android:layout_weight="10"
+                android:text="清空" />
+
+            <CheckBox
+                android:id="@+id/checkBox_zhibiao_mqtt"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_weight="10"
+                android:textSize="10sp"
+                android:text="制表发送" />
+
+
+            <CheckBox
+                android:id="@+id/checkBox_time_mqtt"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_weight="10"
+                android:textSize="10sp"
+                android:text="定时发送" />
+
+            <EditText
+                android:id="@+id/editText_time_mqtt"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_weight="8"
+                android:textSize="10sp"
+                android:ems="10"
+                android:inputType="phone" />
+
+            <TextView
+                android:id="@+id/textView2_mqtt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="10sp"
+                android:layout_weight="3"
+                android:text="ms" />
+
+
+        </LinearLayout>
+
+
+
+
+    </RelativeLayout>
 
 </FrameLayout>

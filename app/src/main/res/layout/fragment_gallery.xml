@@ -3,43 +3,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/gallery_layot_mqtt"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/text_gallery"
-        android:layout_width="wrap_content"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navigation_mqtt"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_centerHorizontal="true"
-        android:textAlignment="center"
-        android:text="imageView"
+        android:layout_alignParentBottom="true"
+        android:background="?android:attr/windowBackground"
+        app:menu="@menu/menu_lanya">
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <!--<fragment
+         android:id="@+id/nav_host_fragment_and_fragment"
+         android:name="androidx.navigation.fragment.NavHostFragment"
+         android:layout_width="match_parent"
+         android:layout_height="675dp"
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintLeft_toLeftOf="parent"
+         app:layout_constraintRight_toRightOf="parent"
+         app:layout_constraintTop_toTopOf="parent"
+         app:defaultNavHost="true"
+         app:navGraph="@navigation/mobile_lanya_navigation"
+         ></fragment>-->
+    <androidx.viewpager.widget.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ViewPager_slidshow_mqtt"
+        android:layout_above="@id/navigation_mqtt">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="400dp"
-        android:layout_height="270dp"
-        app:srcCompat="@drawable/timg_3"
-        tools:ignore="MissingConstraints"
-        android:layout_below="@id/text_gallery"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"/>
-    <ImageView
-        android:layout_width="400dp"
-        android:layout_height="200dp"
-        android:id="@+id/imageViem_wl"
-        android:layout_below="@id/imageView2"
-        android:layout_marginTop="20dp"
-        android:background="#bbb"
-        android:layout_centerHorizontal="true"
-
-        />
-
-
+    </androidx.viewpager.widget.ViewPager>
 </RelativeLayout>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/lanya_shezhi_mqtt"
+        android:icon="@drawable/shezhi"
+        android:title="设置"
+        > </item>
+    <item
+        android:id="@+id/lanya_duihua_mqtt"
+        android:icon="@drawable/duihua_shixin"
+        android:title="对话"
+        > </item>
+    <item
+        android:id="@+id/lanya_anjian_mqtt"
+        android:icon="@drawable/anjian"
+        android:title="按键"
+        >
+
+    </item>
+    <item
+        android:id="@+id/lanya_kaiguan_mqtt"
+        android:icon="@drawable/kaiguanguan"
+        android:title="开关"
+        >
+
+    </item>
+    <item
+        android:id="@+id/lanya_boxingtu_mqtt"
+        android:icon="@drawable/tubiaozhexiantu"
+        android:title="波形图"
+        >
+
+    </item>
+</menu>

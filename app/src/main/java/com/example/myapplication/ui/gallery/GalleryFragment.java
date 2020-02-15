@@ -26,19 +26,19 @@ public class GalleryFragment extends Fragment {
         galleryViewModel =
                 ViewModelProviders.of(this).get(GalleryViewModel.class);
         View root = inflater.inflate(R.layout.fragment_gallery, container, false);
-        final TextView textView = root.findViewById(R.id.text_gallery);
+        //final TextView textView = root.findViewById(R.id.text_gallery);
 
-        imageView_2 =root.findViewById(R.id.imageViem_wl);
+        //imageView_2 =root.findViewById(R.id.imageViem_wl_mqtt);
 
 
-        Glide.with(this).load("https://tc.sinaimg.cn/maxwidth.800/tc.service.weibo.com/p1_pstatp_com/81599b6b246e4f27a29a82409df8c542.jpg").into(imageView_2);
+        //Glide.with(this).load("https://tc.sinaimg.cn/maxwidth.800/tc.service.weibo.com/p1_pstatp_com/81599b6b246e4f27a29a82409df8c542.jpg").into(imageView_2);
 
-        galleryViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+        //galleryViewModel.getText().observe(this, new Observer<String>() {
+           // @Override
+           // public void onChanged(@Nullable String s) {
+             //   textView.setText(s);
+          //  }
+       // });
 
 
            return root;

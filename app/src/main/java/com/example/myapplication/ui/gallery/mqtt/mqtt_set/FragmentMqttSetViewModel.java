@@ -51,7 +51,7 @@ public class FragmentMqttSetViewModel extends ViewModel {
     public MutableLiveData<String> getMqtt_id() {
         if(mqtt_id==null){
             mqtt_id=new MutableLiveData<>();
-            mqtt_id.setValue(" ");
+            mqtt_id.setValue("");
         }
         return mqtt_id;
     }

@@ -290,6 +290,7 @@
         android:layout_height="50dp"
         android:ems="10"
         android:hint="@string/zhiti"
+        android:text="@={data.mqtt_sub_topic}"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/guideline54"
         app:layout_constraintStart_toEndOf="@+id/textView36"
@@ -302,6 +303,7 @@
         android:layout_height="59dp"
         android:ems="10"
         android:hint="@string/zhiti"
+        android:text="@={data.mqtt_pub_topic}"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/button19"
         app:layout_constraintStart_toEndOf="@+id/textView37"
@@ -335,6 +337,7 @@
         android:layout_width="119dp"
         android:layout_height="31dp"
         android:orientation="horizontal"
+
         app:layout_constraintBottom_toTopOf="@+id/guideline54"
         app:layout_constraintEnd_toStartOf="@+id/guideline39"
         app:layout_constraintStart_toEndOf="@+id/editText13"

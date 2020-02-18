@@ -18,6 +18,8 @@ import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.myapplication.R;
@@ -40,7 +42,7 @@ import java.util.concurrent.TimeUnit;
 public class Fragment_mqtt_set extends Fragment {
 
     private FragmentMqttSetViewModel mViewModel;
-    private ScheduledExecutorService scheduler;
+    private ScheduledExecutorService scheduler,scheduler1;
     private MqttClient client;
     private MqttConnectOptions options;
     private Handler handler;
@@ -92,8 +94,10 @@ public class Fragment_mqtt_set extends Fragment {
 
                         break;
                     case 3:  //MQTT 收到消息回传   UTF8Buffer msg=new UTF8Buffer(object.toString());
-
-
+                        ///String top_string =msg.obj.toString().substring(0,msg.obj.toString().indexOf("---"));
+                       // String sub_string = msg.obj.toString().substring(msg.obj.toString().indexOf("---"));
+                        Toast.makeText(Objects.requireNonNull(getView()).getContext(), msg.obj.toString(), Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(Objects.requireNonNull(getView()).getContext(), top_string+"___"+sub_string, Toast.LENGTH_SHORT).show();
                         break;
                     case 30:  //连接失败
                         mViewModel.getMqtt_connect_flag().setValue(false);
@@ -101,7 +105,12 @@ public class Fragment_mqtt_set extends Fragment {
                         break;
                     case 31:   //连接成功
                         mViewModel.getMqtt_connect_flag().setValue(true);
-                        Toast.makeText(Objects.requireNonNull(getView()).getContext(), "连接成功", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getView().getContext(), "连接成功", Toast.LENGTH_SHORT).show();
+                        try {
+                            client.subscribe("123",0);
+                        } catch (MqttException e) {
+                            e.printStackTrace();
+                        }
 //                        try {
 //                         //   client.subscribe(mqtt_sub_topic,1);
 //                        } catch (MqttException e) {
@@ -129,34 +138,99 @@ public class Fragment_mqtt_set extends Fragment {
                 mkin(getView());
             }
         });
+        binding.button18.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (client == null || !client.isConnected()) {
+                    Toast.makeText(Objects.requireNonNull(getView()).getContext(), "未连接", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (mViewModel.getMqtt_sub_topic().getValue().length()==0)
+                {
+                    Toast.makeText(Objects.requireNonNull(getView()).getContext(), "未填写主题", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    try {
+                        client.subscribe(mViewModel.getMqtt_sub_topic().getValue(),mViewModel.getMqtt_sub_quality().getValue());
+                        //Toast.makeText(Objects.requireNonNull(getView()).getContext(), "订阅成功", Toast.LENGTH_SHORT).show();
+                    } catch (MqttException e) {
+                        Toast.makeText(Objects.requireNonNull(getView()).getContext(), "订阅失败", Toast.LENGTH_SHORT).show();
+                        e.printStackTrace();
 
-//        scheduler = Executors.newSingleThreadScheduledExecutor();
-//        scheduler.scheduleAtFixedRate(new Runnable() {
-//            @Override
-//            public void run() {
-//                if (!client.isConnected()) {
-//                    //Mqtt_connect();
-//                    mViewModel.getMqtt_connect_flag().setValue(false);
-//                    Toast.makeText(Objects.requireNonNull(getView()).getContext(), "连接以断开", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        }, 0 * 1000, 10 * 1000, TimeUnit.MILLISECONDS);
+                    }
+                }
+            }
+        });
+        binding.button19.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                publishmessageplus("wws","911",0);
+            }
+        });
+        binding.radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                int message;
+                if (checkedId==R.id.radioButton){
+                    message=0;
+                }else if (checkedId==R.id.radioButton2){
+                    message=1;
+                }else if(checkedId==R.id.radioButton3){
+                    message=2;
+                }else {
+                    message=0;
+                }
+                mViewModel.getMqtt_sub_quality().setValue(message);
+            }
+        });
+        binding.radioGroup2.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                Integer message;
+                if (checkedId==R.id.radioButton4){
+                    message=0;
+                }else if (checkedId==R.id.radioButton5){
+                    message=1;
+                }else if(checkedId==R.id.radioButton6){
+                    message=2;
+                }else {
+                    message=0;
+                }
+                mViewModel.getMqtt_pub_quality().setValue(message);
+            }
+        });
+        scheduler1 = Executors.newSingleThreadScheduledExecutor();
+        scheduler1.scheduleAtFixedRate(new Runnable() {
+            @Override
+            public void run() {
+                if(client!=null){
+                if (!client.isConnected()) {
+                    //Mqtt_connect();
+                    mViewModel.getMqtt_connect_flag().setValue(false);
+                    Toast.makeText(Objects.requireNonNull(getView()).getContext(), "连接以断开", Toast.LENGTH_SHORT).show();
+                }
+                }
+            }
+        }, 0 , 500 , TimeUnit.MILLISECONDS);
         return binding.getRoot();
 
     }
 
     public void mkin(View view)//连接方法
     {
+        if(client != null )
+            if (client.isConnected())
+            return;
         if (mViewModel.getHost_IP().getValue()==""){
             Toast.makeText(view.getContext(), "未填写IP", Toast.LENGTH_SHORT).show();
 
             return;
         }
-        else if (mViewModel.getHost_Port().getValue()==null){
+        else if (mViewModel.getHost_Port().getValue()==""){
             Toast.makeText(view.getContext(), "未填写端口号", Toast.LENGTH_SHORT).show();
             return;
         }
-        else if(mViewModel.getMqtt_id().getValue()==null){
+        else if(mViewModel.getMqtt_id().getValue()==""){
             Toast.makeText(view.getContext(), "未填写ID", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -168,22 +242,21 @@ public class Fragment_mqtt_set extends Fragment {
                 mViewModel.getPassWord().setValue("1234");
             }
             Mqtt_init();
-
-           // Mqtt_connect();
             startReconnect();
         }
-
-
 
     }
     private void Mqtt_disconnect() throws MqttException {
         try {
-            if (client !=null){
+            if (client !=null)
+            if (client.isConnected()){
+
                 scheduler.shutdown();
 
                 client.disconnect();
                 mViewModel.getMqtt_connect_flag().setValue(false);
-               // client.close();
+
+                Toast.makeText(Objects.requireNonNull(getView()).getContext(), "连接已断开", Toast.LENGTH_SHORT).show();
             }
 
         }catch (MqttException e) {
@@ -197,7 +270,7 @@ public class Fragment_mqtt_set extends Fragment {
 
         try {
             //host为主机名，test为clientid即连接MQTT的客户端ID，一般以客户端唯一标识符表示，MemoryPersistence设置clientid的保存形式，默认为以内存保存
-            client = new MqttClient(mViewModel.getHost().getValue(), mViewModel.getMqtt_id().getValue(),
+            client = new MqttClient(mViewModel.getHost().getValue(), Objects.requireNonNull(mViewModel.getMqtt_id().getValue()),
                     new MemoryPersistence());
             //MQTT的连接设置
             options = new MqttConnectOptions();
@@ -206,7 +279,7 @@ public class Fragment_mqtt_set extends Fragment {
             //设置连接的用户名
             options.setUserName(mViewModel.getUserName().getValue());
             //设置连接的密码
-            options.setPassword(mViewModel.getPassWord().getValue().toCharArray());
+            options.setPassword(Objects.requireNonNull(mViewModel.getPassWord().getValue()).toCharArray());
             // 设置超时时间 单位为秒
             options.setConnectionTimeout(10);
             // 设置会话心跳时间 单位为秒 服务器会每隔1.5*20秒的时间向客户端发送个消息判断客户端是否在线，但这个方法并没有重连的机制
@@ -229,11 +302,13 @@ public class Fragment_mqtt_set extends Fragment {
                 public void messageArrived(String topicName, MqttMessage message)
                         throws Exception {
                     //subscribe后得到的消息会执行到这里面
+                    Toast.makeText(Objects.requireNonNull(getView()).getContext(), topicName+"_"+message, Toast.LENGTH_SHORT).show();
                     System.out.println("messageArrived----------");
                     Message msg = new Message();
                     msg.what = 3;   //收到消息标志位
                     msg.obj = topicName + "---" + message.toString();
                     handler.sendMessage(msg);    // hander 回传
+
                 }
             });
         } catch (Exception e) {
@@ -269,18 +344,19 @@ public class Fragment_mqtt_set extends Fragment {
                 if (!client.isConnected()) {
 
                     Mqtt_connect();
-//                    mViewModel.getMqtt_connect_flag().setValue(false);
-//                    Toast.makeText(Objects.requireNonNull(getView()).getContext(), "连接以断开", Toast.LENGTH_SHORT).show();
+
                 }
             }
         }, 0 * 1000, 10 * 1000, TimeUnit.MILLISECONDS);
     }
-    private void publishmessageplus(String topic,String message2)
+    private void publishmessageplus(String topic,String message2 ,int qos )
     {
         if (client == null || !client.isConnected()) {
-            return;
+                Toast.makeText(Objects.requireNonNull(getView()).getContext(), "未连接", Toast.LENGTH_SHORT).show();
+                return;
         }
         MqttMessage message = new MqttMessage();
+        message.setQos(qos);
         message.setPayload(message2.getBytes());
         try {
             client.publish(topic,message);

@@ -317,10 +317,10 @@ public class Main_1Activity extends AppCompatActivity  {
         /*Bundle extras = intent.getExtras();
         if (extras != null) {
             Bitmap photo = extras.getParcelable("data");
-            headImage.setImageBitmap(photo);
-        }*/
-        try {
-            if (intent != null) {
+                headImage.setImageBitmap(photo);
+            }*/
+            try {
+                if (intent != null) {
                // imageView_img
 //                Bitmap bitmap = imageZoom(b);//看个人需求，可以不压缩
                 mimage_wl.setImageBitmap(b);

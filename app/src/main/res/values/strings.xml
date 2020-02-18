@@ -32,4 +32,18 @@
     <string name="kaisjieshou" translatable="false">开始接收</string>
     <string name="huadong" translatable="false">滑动进度条</string>
     <string name="bianji" translatable="false">编辑模式</string>
+    <string name="IP">服务器IP:</string>
+    <string name="duankou">端口号:</string>
+    <string name="shebeiID">设备ID:</string>
+    <string name="tishi">以下内容若没有则不填</string>
+    <string name="user">用户名:</string>
+    <string name="mima">密码:</string>
+    <string name="duankai">断开</string>
+    <string name="zhiti">主题</string>
+    <string name="dingyui">订阅:</string>
+    <string name="fabu">发布:</string>
+    <string name="confirm">确定</string>
+    <string name="message_quality">消息质量</string>
+    <string name="ip">服务器IP:</string>
+    <string name="connect">连接</string>
 </resources>

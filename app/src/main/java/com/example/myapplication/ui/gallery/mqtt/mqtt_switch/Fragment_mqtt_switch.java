@@ -1,5 +1,7 @@
 package com.example.myapplication.ui.gallery.mqtt.mqtt_switch;
 
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
@@ -13,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.myapplication.R;
+import com.example.myapplication.db.KeyBlueViewModel;
 
 public class Fragment_mqtt_switch extends Fragment {
 
@@ -25,7 +28,11 @@ public class Fragment_mqtt_switch extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_mqtt_switch_fragment, container, false);
+
+        ViewDataBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_mqtt_switch_fragment, container, false);
+
+
+        return binding.getRoot();
     }
 
     @Override

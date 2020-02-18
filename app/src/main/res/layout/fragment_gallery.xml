@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="?android:attr/windowBackground"
-        app:menu="@menu/menu_lanya">
+        app:menu="@menu/mqtt_lanya">
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
     <!--<fragment

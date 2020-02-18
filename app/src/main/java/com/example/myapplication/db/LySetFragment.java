@@ -1,13 +1,13 @@
 package com.example.myapplication.db;
-        import android.Manifest;
-        import android.app.Activity;
+
+        import android.annotation.SuppressLint;
+
         import android.bluetooth.BluetoothAdapter;
         import android.bluetooth.BluetoothDevice;
-        import android.bluetooth.BluetoothHeadset;
-        import android.bluetooth.BluetoothProfile;
+
         import android.content.BroadcastReceiver;
         import android.content.Context;
-        import android.content.ContextWrapper;
+
         import android.content.Intent;
         import android.content.IntentFilter;
         import android.os.Bundle;
@@ -25,65 +25,55 @@ package com.example.myapplication.db;
         import android.widget.ListView;
         import android.widget.TextView;
         import android.widget.Toast;
-        import android.widget.Toolbar;
 
-        import androidx.annotation.Nullable;
+
+
         import androidx.annotation.NonNull;
         import androidx.fragment.app.Fragment;
-        import androidx.lifecycle.Observer;
-        import androidx.lifecycle.ViewModelProviders;
 
-        import com.example.myapplication.Main_1Activity;
         import com.example.myapplication.R;
-        import com.mylhyl.acp.Acp;
-        import com.mylhyl.acp.AcpListener;
-        import com.mylhyl.acp.AcpOptions;
-        import  com.example.myapplication.db.*;
-        import java.util.ArrayList;
-        import java.util.List;
+
+        import java.util.Objects;
         import java.util.Set;
 
-        import static android.bluetooth.BluetoothProfile.HEADSET;
+
 
 public class LySetFragment<textView1_shebe> extends Fragment {
 
     private static final String TAG = "DeviceList";
     private static final boolean DEBUG = true;
-    public static final int REC_DATA = 2;
-    public static final int CONNECTED_DEVICE_NAME = 4;
-    public static final int BT_TOAST = 5;
-    public static final int MAIN_TOAST = 6;
+    private static final int REC_DATA = 2;
+    private static final int CONNECTED_DEVICE_NAME = 4;
+    private static final int BT_TOAST = 5;
+    private static final int MAIN_TOAST = 6;
 
 
-    public static BluetoothService mConnectService = null;
-    static boolean isHEXsend=false,isHEXrec=false;
+    static BluetoothService mConnectService = null;
+
 
     private TextView RecDataView;
-    public static String DEVICE_ADDRESS = "device address";
+   // public static String DEVICE_ADDRESS = "device address";
 
     // 已连接设备的名字
-    public static String mConnectedDeviceName = null;
+    private static String mConnectedDeviceName = null;
     //蓝牙连接服务对象
-    public static BluetoothAdapter mBluetoothAdapter = null;
+    private static BluetoothAdapter mBluetoothAdapter = null;
 
 
     // 标志字符串常量
-    public static final String DEVICE_NAME = "device name";
+    private static final String DEVICE_NAME = "device name";
     public static final String TOAST = "toast";
 
 
-    public TextView textView1_shebe;
     private BluetoothAdapter mBtAdapter;
-    private ArrayAdapter<String> mPairedDevices;
     private ArrayAdapter<String> mNewDevices;
     private Button scanButton;
-    private CheckBox box1,box2;
     private TextView toolbar;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_ly_set, container, false);
-        scanButton = (Button)root.findViewById(R.id.button_soushuo);
+        scanButton = root.findViewById(R.id.button_soushuo);
         scanButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,11 +81,11 @@ public class LySetFragment<textView1_shebe> extends Fragment {
 
             }
         });
-        mPairedDevices =new ArrayAdapter(this.getActivity(),R.layout.device_name);
-        mNewDevices =new ArrayAdapter(this.getActivity(),R.layout.device_name);
+        ArrayAdapter<String> mPairedDevices = new ArrayAdapter<String>(Objects.requireNonNull(this.getActivity()), R.layout.device_name);
+        mNewDevices =new ArrayAdapter<>(this.getActivity(),R.layout.device_name);
         final ListView lv_ypd = root.findViewById(R.id.listview_ypd);
         final ListView lv_wpd = root.findViewById(R.id.listview_wpd);
-        textView1_shebe =root.findViewById(R.id.text_shezhi);
+
 
 
 
@@ -123,8 +113,8 @@ public class LySetFragment<textView1_shebe> extends Fragment {
             mPairedDevices.add("未搜到任何设备");
         }
 
-        box1=root.findViewById(R.id.checkBox_ypd);
-        box2=root.findViewById(R.id.checkBox_wpd);
+        CheckBox box1 = root.findViewById(R.id.checkBox_ypd);
+        CheckBox box2 = root.findViewById(R.id.checkBox_wpd);
 
 
         box1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -187,7 +177,7 @@ public class LySetFragment<textView1_shebe> extends Fragment {
         // 注册蓝牙搜索广播
         IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
         filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
-        this.getActivity().registerReceiver(mReceiver, filter);
+        Objects.requireNonNull(this.getActivity()).registerReceiver(mReceiver, filter);
         IntentFilter stateChangeFilter = new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
         IntentFilter connectedFilter = new IntentFilter(BluetoothDevice.ACTION_ACL_CONNECTED);
         IntentFilter disConnectedFilter = new IntentFilter(BluetoothDevice.ACTION_ACL_DISCONNECTED);
@@ -204,7 +194,7 @@ public class LySetFragment<textView1_shebe> extends Fragment {
         if (!mBluetoothAdapter.isEnabled()) {
             Toast.makeText(this.getActivity(), "蓝牙未打开", Toast.LENGTH_LONG).show();
             Intent intent =new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            this.getActivity().startActivityForResult(intent,0);
+            Objects.requireNonNull(this.getActivity()).startActivityForResult(intent,0);
             return;
         }
         if (DEBUG) Log.d(TAG, "doDisc overy()");
@@ -240,18 +230,19 @@ public class LySetFragment<textView1_shebe> extends Fragment {
         }
     };
 
-    String[] hex_string_table=new String[256];
-    private void init_hex_string_table(){
-        for(int i=0;i<256;i++){
-            if(i<16){
-                hex_string_table[i]=" 0"+Integer.toHexString(i).toUpperCase();
-            }else{
-                hex_string_table[i]=" "+Integer.toHexString(i).toUpperCase();
-            }
-        }
-    }
+//    private String[] hex_string_table=new String[256];
+//    private void init_hex_string_table(){
+//        for(int i=0;i<256;i++){
+//            if(i<16){
+//                hex_string_table[i]=" 0"+Integer.toHexString(i).toUpperCase();
+//            }else{
+//                hex_string_table[i]=" "+Integer.toHexString(i).toUpperCase();
+//            }
+//        }
+//    }
     private int align_num=0;//对齐字节数
     // 用于从线程获取信息的Handler对象
+   @SuppressLint("HandlerLeak")
    private final Handler mHandler = new Handler(){
 
 
@@ -262,22 +253,15 @@ public class LySetFragment<textView1_shebe> extends Fragment {
         int b,i,lineWidth=0,align_i=0;
         @Override
         public void handleMessage(Message msg) {
+            boolean isHEXrec = false;
             switch (msg.what) {
                 case REC_DATA:
                     sb.setLength(0);
-                    if(isHEXrec){
-                        bs=(byte[])msg.obj;
-                        for(i=0;i<msg.arg1;i++){
-                            b=(bs[i]&0xff);
-                            sb.append(hex_string_table[b]);
-                        }
-                    }else {
-                        bs=(byte[])msg.obj;
-                        char[] c=new char[msg.arg1];
-                        for(i=0;i<msg.arg1;i++){
-                            c[i]=(char)(bs[i]&0xff);
-                            sb.append(c[i]);
-                        }
+                    bs=(byte[])msg.obj;
+                    char[] c=new char[msg.arg1];
+                    for(i=0;i<msg.arg1;i++){
+                        c[i]=(char)(bs[i]&0xff);
+                        sb.append(c[i]);
                     }
                     com.example.myapplication.db.Message message =new com.example.myapplication.db.Message(sb.toString(), com.example.myapplication.db.Message.TYPE_RECEIVED);
                     LyduihuaFragment.msgList.add(message);
@@ -325,21 +309,19 @@ public class LySetFragment<textView1_shebe> extends Fragment {
 
  };
 
- private String target_device_name=null;
-
-        public void onActivityResult(String address) {
+    private void onActivityResult(String address) {
             Log.e(TAG, "onActivityResult");
             // 提取蓝牙地址数据
 
                     // 获取设备
                     BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
-                    target_device_name=device.getName();
+        String target_device_name = device.getName();
                     if(target_device_name.equals(mConnectedDeviceName)){
                         Toast.makeText(this.getActivity(), "已连接"+mConnectedDeviceName, Toast.LENGTH_SHORT).show();
                         return;
                     }
                     // 提示正在连接设备
-                    Toast.makeText(this.getActivity(), "正在连接"+target_device_name, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this.getActivity(), "正在连接"+ target_device_name, Toast.LENGTH_SHORT).show();
                     // 连接设备
                     mConnectService.connect(device);
 
@@ -362,10 +344,9 @@ public class LySetFragment<textView1_shebe> extends Fragment {
                 // 获取蓝牙设备
                 device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 // 已匹配的跳过
+                assert device != null;
                 if (device.getBondState() != BluetoothDevice.BOND_BONDED)
-                {
                     mNewDevices.add(device.getName() + "\n" + device.getAddress());
-                }
             }
             //蓝牙搜索完成
             else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action))
@@ -376,20 +357,24 @@ public class LySetFragment<textView1_shebe> extends Fragment {
                     mNewDevices.add("未搜到任何设备");
                 }
             }
-            else if (action.equals(BluetoothDevice.ACTION_ACL_CONNECTED)) {
-                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                String name = device.getName();
-                Toast.makeText(context, "已连接"+name, Toast.LENGTH_SHORT).show();
-                //连接上了
-            }
-            else if (action.equals(BluetoothDevice.ACTION_ACL_DISCONNECTED)) {
-                //蓝牙连接被切断
-                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                String name = device.getName();
-              //  Toast.showToast(name + "的连接被断开", getApplicationContext());
-                Toast.makeText(context, name + "的连接被断开", Toast.LENGTH_SHORT).show();
+            else {
+                assert action != null;
+                if (action.equals(BluetoothDevice.ACTION_ACL_CONNECTED)) {
+                    BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                    assert device != null;
+                    String name = device.getName();
+                    Toast.makeText(context, "已连接"+name, Toast.LENGTH_SHORT).show();
+                    //连接上了
+                }
+                else if (action.equals(BluetoothDevice.ACTION_ACL_DISCONNECTED)) {
+                    //蓝牙连接被切断
+                    BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                    assert device != null;
+                    String name = device.getName();
+                  //  Toast.showToast(name + "的连接被断开", getApplicationContext());
+                    Toast.makeText(context, name + "的连接被断开", Toast.LENGTH_SHORT).show();
 
-                return;
+                }
             }
 
         }
